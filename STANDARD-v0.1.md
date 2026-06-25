@@ -17,13 +17,11 @@ It focuses on two surfaces:
 **IN** — what enters AI.  
 **OUT** — what leaves AI.
 
-The standard defines how AI systems should assign trust states, produce evidence packets, constrain unsafe inputs/outputs, escalate uncertain decisions and avoid silent failure.
+The standard defines how AI systems should assign trust states, produce evidence packets, constrain unsafe inputs and outputs, escalate uncertain decisions and avoid silent failure.
 
----
+T-Rust I/O is not a replacement for OWASP, NIST AI RMF, Google SAIF, MITRE ATLAS or ISO AI governance standards.
 
-## 2. Problem
-
-Modern AI systems often treat interaction as a simple pipeline:
+It is an implementation-oriented draft for the missing operational layer between AI risk frameworks and real AI systems:
 
 ```text
-input -> model -> output
+IN -> state -> evidence -> decision -> OUT
