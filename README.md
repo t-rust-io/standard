@@ -338,6 +338,24 @@ We believe AI systems should not only act.
 They should be able to show what they trusted before they acted.
 
 
+## Framework mappings
+
+T-Rust I/O is not designed to replace existing AI security and governance frameworks.
+
+It is designed to define a narrower operational layer: the AI input/output trust boundary.
+
+Initial mapping documents:
+
+- [OWASP GenAI / LLM Security](mappings/OWASP.md)
+- [NIST AI Risk Management Framework](mappings/NIST-AI-RMF.md)
+- [Google Secure AI Framework](mappings/GOOGLE-SAIF.md)
+- [MITRE ATLAS](mappings/MITRE-ATLAS.md)
+
+These mappings are not official endorsements or formal mappings by those organizations.
+
+They are draft bridges showing how existing risk, governance and threat language can be operationalized as trust states, evidence packets and boundary decisions.
+
+
 ## Project status
 
 T-Rust I/O is currently an open draft.
