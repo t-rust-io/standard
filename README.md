@@ -315,6 +315,29 @@ This repository is an early public draft.
 
 ---
 
+## Who we are
+
+T-Rust I/O is maintained by an independent research and engineering initiative focused on AI trust boundaries, secure system design and evidence-producing AI infrastructure.
+
+We are not a formal standards body, certification authority or security vendor claiming to replace existing frameworks.
+
+We are building an open, implementation-oriented draft for a narrower missing layer:
+
+> how AI systems should assign trust states, produce evidence and make visible decisions about what enters AI and what leaves AI.
+
+Our work is intentionally public at the language, model, principle and interface level.
+
+We welcome critique from AI security researchers, Rust engineers, agent framework builders, RAG system designers, auditors and practitioners working on real-world AI systems.
+
+The goal is not to own the conversation.
+
+The goal is to make AI trust boundaries easier to define, implement, test and challenge.
+
+We believe AI systems should not only act.
+
+They should be able to show what they trusted before they acted.
+
+
 ## Project status
 
 T-Rust I/O is currently an open draft.
