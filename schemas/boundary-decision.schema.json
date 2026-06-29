@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/t-rust-io/standard/schemas/boundary-decision.schema.json",
+  "title": "T-Rust I/O Boundary Decision",
+  "description": "A decision produced by the AI I/O trust boundary.",
+  "type": "object",
+  "required": [
+    "decision_id",
+    "object_id",
+    "boundary_side",
+    "trust_state",
+    "decision",
+    "timestamp"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "decision_id": {
+      "type": "string"
+    },
+    "object_id": {
+      "type": "string"
+    },
+    "boundary_side": {
+      "type": "string",
+      "enum": [
+        "IN",
+        "OUT",
+        "Agent",
+        "RAG",
+        "FailureModes",
+        "LLM_Security",
+        "Custom"
+      ]
+    },
+    "trust_state": {
+      "type": "string",
+      "enum": [
+        "unseen",
+        "received",
+        "inspected",
+        "classified",
+        "trusted",
+        "constrained",
+        "blocked",
+        "quarantined",
+        "escalated",
+        "failed_with_trace",
+        "pending_human_review"
+      ]
+    },
+    "decision": {
+      "type": "string",
+      "enum": [
+        "allow",
+        "allow_with_warning",
+        "constrain",
+        "block",
+        "quarantine",
+        "escalate",
+        "request_human_review",
+        "fail_with_trace"
+      ]
+    },
+    "enforcement": {
+      "type": "string",
+      "enum": [
+        "observe",
+        "warn",
+        "allow",
+        "constrain",
+        "block",
+        "quarantine",
+        "human_review",
+        "fail_with_trace"
+      ]
+    },
+    "evidence_packet_id": {
+      "type": "string"
+    },
+    "policy_version": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "human_review_required": {
+      "type": "boolean"
+    },
+    "reason": {
+      "type": "string"
+    },
+    "extensions": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

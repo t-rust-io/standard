@@ -356,6 +356,30 @@ These mappings are not official endorsements or formal mappings by those organiz
 They are draft bridges showing how existing risk, governance and threat language can be operationalized as trust states, evidence packets and boundary decisions.
 
 
+## Schemas and examples
+
+T-Rust I/O is intended to become machine-readable and example-driven.
+
+Initial schemas:
+
+- [Evidence Packet Schema](schemas/evidence-packet.schema.json)
+- [Trust Event Schema](schemas/trust-event.schema.json)
+- [Trust State Schema](schemas/trust-state.schema.json)
+- [Boundary Decision Schema](schemas/boundary-decision.schema.json)
+
+Initial examples:
+
+- [RAG Poisoning Boundary](examples/rag-poisoning-boundary.md)
+- [Tool Call Boundary](examples/tool-call-boundary.md)
+- [Document Ingestion Boundary](examples/document-ingestion-boundary.md)
+- [Support Delay Boundary](examples/support-delay-boundary.md)
+- [LLM Security Finding Boundary](examples/llm-security-finding-boundary.md)
+
+These examples are drafts.
+
+Their purpose is to make the trust boundary concrete enough to inspect, criticize and implement.
+
+
 ## Project status
 
 T-Rust I/O is currently an open draft.

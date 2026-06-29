@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/t-rust-io/standard/schemas/trust-state.schema.json",
+  "title": "T-Rust I/O Trust State Record",
+  "description": "A current state record for an object, action, output, failure or escalation.",
+  "type": "object",
+  "required": [
+    "state_id",
+    "object_id",
+    "state",
+    "applies_to",
+    "timestamp"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "state_id": {
+      "type": "string"
+    },
+    "object_id": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "unseen",
+        "received",
+        "inspected",
+        "classified",
+        "trusted",
+        "constrained",
+        "blocked",
+        "quarantined",
+        "escalated",
+        "failed_with_trace",
+        "pending_human_review"
+      ]
+    },
+    "applies_to": {
+      "type": "string",
+      "enum": [
+        "document",
+        "prompt",
+        "rag_chunk",
+        "tool_call",
+        "api_request",
+        "file_write",
+        "agent_action",
+        "output",
+        "failure",
+        "finding",
+        "model_output",
+        "custom"
+      ]
+    },
+    "visibility": {
+      "type": "string",
+      "enum": [
+        "internal",
+        "audit",
+        "operator",
+        "user_visible"
+      ]
+    },
+    "reason": {
+      "type": "string"
+    },
+    "human_visible_summary": {
+      "type": "string"
+    },
+    "evidence_packet_id": {
+      "type": "string"
+    },
+    "allowed_next_states": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "unseen",
+          "received",
+          "inspected",
+          "classified",
+          "trusted",
+          "constrained",
+          "blocked",
+          "quarantined",
+          "escalated",
+          "failed_with_trace",
+          "pending_human_review"
+        ]
+      }
+    },
+    "set_by": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "extensions": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

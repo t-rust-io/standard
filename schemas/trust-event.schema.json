@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/t-rust-io/standard/schemas/trust-event.schema.json",
+  "title": "T-Rust I/O Trust Event",
+  "description": "A timestamped event describing a state transition or boundary action.",
+  "type": "object",
+  "required": [
+    "event_id",
+    "event_type",
+    "boundary_side",
+    "object_id",
+    "new_state",
+    "timestamp"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "event_id": {
+      "type": "string"
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "receive",
+        "inspect",
+        "classify",
+        "decide",
+        "constrain",
+        "block",
+        "quarantine",
+        "escalate",
+        "review",
+        "fail",
+        "status_update"
+      ]
+    },
+    "boundary_side": {
+      "type": "string",
+      "enum": [
+        "IN",
+        "OUT",
+        "Agent",
+        "RAG",
+        "FailureModes",
+        "LLM_Security",
+        "Custom"
+      ]
+    },
+    "object_id": {
+      "type": "string"
+    },
+    "previous_state": {
+      "type": "string",
+      "enum": [
+        "unseen",
+        "received",
+        "inspected",
+        "classified",
+        "trusted",
+        "constrained",
+        "blocked",
+        "quarantined",
+        "escalated",
+        "failed_with_trace",
+        "pending_human_review"
+      ]
+    },
+    "new_state": {
+      "type": "string",
+      "enum": [
+        "unseen",
+        "received",
+        "inspected",
+        "classified",
+        "trusted",
+        "constrained",
+        "blocked",
+        "quarantined",
+        "escalated",
+        "failed_with_trace",
+        "pending_human_review"
+      ]
+    },
+    "decision": {
+      "type": "string",
+      "enum": [
+        "allow",
+        "allow_with_warning",
+        "constrain",
+        "block",
+        "quarantine",
+        "escalate",
+        "request_human_review",
+        "fail_with_trace"
+      ]
+    },
+    "evidence_packet_id": {
+      "type": "string"
+    },
+    "actor": {
+      "type": "string",
+      "description": "System, model, validator, human reviewer or service that produced the event."
+    },
+    "trace_id": {
+      "type": "string"
+    },
+    "policy_version": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "component_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "extensions": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

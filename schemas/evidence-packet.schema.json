@@ -1,0 +1,263 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/t-rust-io/standard/schemas/evidence-packet.schema.json",
+  "title": "T-Rust I/O Evidence Packet",
+  "description": "A structured record explaining why a trust decision was made at an AI input/output boundary.",
+  "type": "object",
+  "required": [
+    "object_id",
+    "object_type",
+    "source",
+    "profile",
+    "trust_state",
+    "decision",
+    "timestamp",
+    "policy_version"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "object_id": {
+      "type": "string"
+    },
+    "object_type": {
+      "type": "string",
+      "enum": [
+        "document",
+        "prompt",
+        "rag_source",
+        "rag_chunk",
+        "tool_manifest",
+        "output",
+        "tool_call",
+        "api_request",
+        "file_write",
+        "agent_action",
+        "failure",
+        "finding",
+        "eval_case",
+        "model_output",
+        "custom"
+      ]
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "upload",
+        "user_prompt",
+        "retrieval",
+        "api",
+        "tool_registry",
+        "system",
+        "model",
+        "evaluation",
+        "unknown"
+      ]
+    },
+    "fingerprint": {
+      "type": "string",
+      "description": "Optional object fingerprint, for example sha256 hash."
+    },
+    "profile": {
+      "type": "string",
+      "enum": [
+        "IN",
+        "OUT",
+        "Agent",
+        "RAG",
+        "FailureModes",
+        "LLM_Security",
+        "Custom"
+      ]
+    },
+    "rule_refs": {
+      "type": "array",
+      "description": "External or internal rule references. Examples: TRUST-IN-001, CWE-079, ATLAS reference, OWASP reference.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "component_refs": {
+      "type": "array",
+      "description": "Opaque component references. These allow multi-component pipelines without exposing private implementation details.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "detector_outputs": {
+      "type": "array",
+      "description": "Signals produced by detectors, classifiers, validators or evaluators.",
+      "items": {
+        "type": "object",
+        "required": [
+          "detector_id",
+          "signal"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "detector_id": {
+            "type": "string"
+          },
+          "signal": {
+            "type": "string"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "info",
+              "low",
+              "medium",
+              "high",
+              "critical"
+            ]
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "observed": {
+            "type": "boolean"
+          },
+          "evidence_ref": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "risks_detected": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "risk_id"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "risk_id": {
+            "type": "string"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "info",
+              "low",
+              "medium",
+              "high",
+              "critical"
+            ]
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        }
+      }
+    },
+    "trust_state": {
+      "type": "string",
+      "enum": [
+        "unseen",
+        "received",
+        "inspected",
+        "classified",
+        "trusted",
+        "constrained",
+        "blocked",
+        "quarantined",
+        "escalated",
+        "failed_with_trace",
+        "pending_human_review"
+      ]
+    },
+    "trust_level": {
+      "type": "string",
+      "enum": [
+        "L0",
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5"
+      ]
+    },
+    "decision": {
+      "type": "string",
+      "enum": [
+        "allow",
+        "allow_with_warning",
+        "constrain",
+        "block",
+        "quarantine",
+        "escalate",
+        "request_human_review",
+        "fail_with_trace"
+      ]
+    },
+    "explanation": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "policy_version": {
+      "type": "string"
+    },
+    "model_context": {
+      "type": "object",
+      "description": "Optional context for LLM security evaluation and reproducibility.",
+      "additionalProperties": false,
+      "properties": {
+        "model_family": {
+          "type": "string"
+        },
+        "model_version": {
+          "type": "string"
+        },
+        "tokenizer": {
+          "type": "string"
+        },
+        "prompt_template_version": {
+          "type": "string"
+        },
+        "output_contract": {
+          "type": "string"
+        },
+        "eval_case_id": {
+          "type": "string"
+        },
+        "baseline_id": {
+          "type": "string"
+        },
+        "dataset_version": {
+          "type": "string"
+        },
+        "latency_ms": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "escalation_path": {
+      "type": "string"
+    },
+    "retention": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "retention_policy": {
+          "type": "string"
+        },
+        "contains_sensitive_metadata": {
+          "type": "boolean"
+        }
+      }
+    },
+    "extensions": {
+      "type": "object",
+      "description": "Reserved extension object for domain-specific implementations.",
+      "additionalProperties": true
+    }
+  }
+}
